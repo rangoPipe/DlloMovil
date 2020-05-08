@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/holo_blue_light"
+    android:padding="@dimen/abc_action_bar_content_inset_material">
+
+    <TextView
+		android:text="Primer texto"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+		android:id="@+id/lblFirsttxt" />
+
+	<EditText
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtFirsttxt" />
+
+    <TextView
+		android:text="Segundo texto"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+		android:id="@+id/lblSecondtxt" />
+
+	<EditText
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtSecondtxt" />
+	
+	<Button
+		android:text="Concatenar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minWidth="25px"
+		android:minHeight="80px"
+        android:textColor="@android:color/white"
+        android:background="?android:attr/colorEdgeEffect"
+		android:id="@+id/btnConcatenar" />
+
+	<TextView
+		android:text=""
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="match_parent"
+		android:layout_height="273.0dp"
+        android:textColor="@android:color/white"
+		android:id="@+id/lblResult" />
+
+
+
+</LinearLayout>
