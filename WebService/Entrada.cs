@@ -12,12 +12,23 @@ using Android.Widget;
 
 namespace WebService
 {
-    public class Entrada
+    public class Content
+    {
+        public string Title { get; set; }
+        public string Body { get; set; }
+
+        public Content(string title = "", string body = "")
+        {
+            Title = title;
+            Body = body;
+        }
+    }
+
+    public class Entrada: Content
     {
         public int UserId { get; set; }
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Body { get; set; }
+        
 
 
         public Entrada(string title = "", string body = "")

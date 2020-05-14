@@ -53,4 +53,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnGuardar" />
+
+    <Button
+        android:text="Eliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEliminar" />
+
+    <Button
+        android:text="Parchar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnParchar" />
 </LinearLayout>

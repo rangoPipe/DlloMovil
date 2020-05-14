@@ -19,6 +19,8 @@ namespace WebService
 
             Button btnConsultar = FindViewById<Button>(Resource.Id.btnConsultar);
             Button btnGuardar = FindViewById<Button>(Resource.Id.btnGuardar);
+            Button btnEliminar = FindViewById<Button>(Resource.Id.btnEliminar);
+            Button btnParchar = FindViewById<Button>(Resource.Id.btnParchar);
 
             EditText txtId = FindViewById<EditText>(Resource.Id.txtId);
             EditText txtTitulo = FindViewById<EditText>(Resource.Id.txtTitulo);
@@ -78,7 +80,7 @@ namespace WebService
                         if (client.CodigoHttp == System.Net.HttpStatusCode.Created)
                         {
                             txtId.Text = result.Id.ToString();
-                            Toast.MakeText(this, $"Llenar los campos contenido y/o titulo", ToastLength.Long).Show();
+                            Toast.MakeText(this, $"Se guardo exitosamente", ToastLength.Long).Show();
                         }
                         else
                         {
@@ -95,7 +97,70 @@ namespace WebService
                     Toast.MakeText(this, $"Error: {ex.Message}", ToastLength.Long).Show();
                 }
             };
+
+            btnEliminar.Click += async (sender, e) =>
+            {
+                try
+                {
+                    Cliente client = new Cliente();
+
+                    if (!string.IsNullOrWhiteSpace(txtId.Text))
+                    {
+                        await client.Delete($"{urlServicio}/{txtId.Text}");
+                        if (client.CodigoHttp == System.Net.HttpStatusCode.OK)
+                        {
+                            Toast.MakeText(this, $"Se elimino correctamente", ToastLength.Long).Show();
+                        }
+                        else
+                        {
+                            throw new Exception(client.CodigoHttp.ToString());
+                        }
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, $"El campo ID no puede estar limpio", ToastLength.Long).Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(this, $"Error: {ex.Message}", ToastLength.Long).Show();
+                }
+            };
+
+            btnParchar.Click += async (sender, e) =>
+            {
+                try
+                {
+                    Cliente client = new Cliente();
+
+                    if (!string.IsNullOrWhiteSpace(txtId.Text))
+                    {
+                        Content item = new Content(txtTitulo.Text, txtContent.Text);
+                        Entrada result = await client.Patch<Entrada>(item, $"{urlServicio}/{txtId.Text}");
+                        if (client.CodigoHttp == System.Net.HttpStatusCode.OK)
+                        {
+                            txtTitulo.Text = result.Title.ToString();
+                            txtContent.Text = result.Body;
+                            Toast.MakeText(this, $"Se parcho exitosamente", ToastLength.Long).Show();
+                        }
+                        else
+                        {
+                            throw new Exception(client.CodigoHttp.ToString());
+                        }
+                    }
+                    else
+                    {
+                        Toast.MakeText(this, $"El campo ID no puede estar limpio", ToastLength.Long).Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(this, $"Error: {ex.Message}", ToastLength.Long).Show();
+                }
+            };
+
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
